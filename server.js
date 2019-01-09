@@ -39,8 +39,9 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
-require("./routes/author-api-routes.js")(app);
-require("./routes/post-api-routes.js")(app);
+require("./routes/auth-routes.js")(app);
+require("./routes/task-api-routes.js")(app);
+require("./routes/user-api-routes.js")(app);
 
 // Set Express to use Handlebars engine to generate HTML layouts
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -54,10 +55,9 @@ db.sequelize.sync({ force: true }).then(function() {
     //console.log("'Nice! Database looks fine'")
   });
 });
-// For passport
-db.sequelize.sync().then(function(){
-    console.log('Nice! Database looks fine')
- }).catch(function(err) {
-    console.log(err, "Something went wrong with the Database Update!")
- 
-});
+//// For passport
+//db.sequelize.sync().then(function(){
+//    console.log('Nice! Database looks fine')
+// }).catch(function(err) {
+//    console.log(err, "Something went wrong with the Database Update!")
+//});
