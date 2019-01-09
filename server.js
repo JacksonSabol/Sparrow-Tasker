@@ -1,29 +1,42 @@
-// Import Express.js
+// *****************************************************************************
+// Server.js - This file is the initial starting point for the Node/Express server.
+//
+// ******************************************************************************
+// *** Dependencies
+// =============================================================
 var express = require("express");
 // Import Handlebars
 var exphbs = require("express-handlebars");
-// Assign a variable to create an instance of Express.js
+
+// Sets up the Express App
+// =============================================================
 var app = express();
-// Assign the PORT to allow for Heroku' port of choice or (||) localhost usage at port 8080
 var PORT = process.env.PORT || 8080;
 
-// Allow Express to serve static directories (like stylesheets)
-app.use(express.static("public"));
+// Requiring our models for syncing
+var db = require("./models");
 
-// Set up the Express app to handle data parsing (body-parser module)
+// Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Static directory
+app.use(express.static("public"));
+
+// Routes
+// =============================================================
+require("./routes/html-routes.js")(app);
+require("./routes/author-api-routes.js")(app);
+require("./routes/post-api-routes.js")(app);
 
 // Set Express to use Handlebars engine to generate HTML layouts
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them
-var routes = require('./controllers/sparrow_controller.js');
-app.use(routes);
-
-// Start the server so that it can begin listening to client requests
-app.listen(PORT, function() {
-  // Log (server-side) when the server has started
-  console.log("Server listening on PORT: " + PORT);
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
