@@ -15,10 +15,13 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         status: {
-            type: DataTypes.STRING,
+            type: Sequelize.ENUM('Personal', 'Outsourced', 'Claimed', 'In-Progress', 'Completed', 'Verified'),
             allowNull: false,
-            defaultValue: "Personal",
-            len: [1]
+            defaultValue: 'Personal'
+        },
+        // Who claimed the task - User ID of Sparrow
+        sparrow_id: {
+            type: DataTypes.INTEGER
         },
         completed_time: {
             type: DataTypes.TIME,
