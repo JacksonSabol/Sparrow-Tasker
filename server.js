@@ -39,17 +39,19 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
-require("./routes/auth-routes.js")(app);
+require("./routes/auth-routes.js")(app,passport);
 require("./routes/task-api-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
+//load passport strategies
+require("./config/passport/passport.js")(passport, db.auth);
 
 // Set Express to use Handlebars engine to generate HTML layouts
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({  }));//SM change it to main before git push
 app.set("view engine", "handlebars");
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
     //console.log("'Nice! Database looks fine'")

@@ -19,15 +19,15 @@ module.exports = function(app) {
   });
 
   // login page
-  app.get("/signup", function(req, res) {
-     res.render("signup");
- });
-
-  // blog route loads blog.html
-  app.get("/login", function(req, res) {
-      res.render("login");
-    // res.sendFile(path.join(__dirname, "../public/.html"));
-  });
+//  app.get("/signup", function(req, res) {
+//     res.render("signup");
+// });
+//
+//  // blog route loads blog.html
+//  app.get("/login", function(req, res) {
+//      res.render("login");
+//    // res.sendFile(path.join(__dirname, "../public/.html"));
+//  });
 
   // authors route loads author-manager.html
   app.get("/", function(req, res) {
