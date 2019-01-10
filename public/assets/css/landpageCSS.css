@@ -1,0 +1,77 @@
+
+.avatar {
+  width: 100%;
+  height: 100%;  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#selector {
+    position:absolute;
+    top: 25%;
+    left: 25%;
+    z-index: 2;
+    opacity: 0.5;
+
+}
+
+
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin:0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 10vw;
+    margin: 0 auto;
+    min-height: 10vh;
+    position: absolute;
+    height: 3%;
+    width: 10%;
+    margin-left: 89.6%
+
+  }
+  .btn {
+    flex: 1 1 auto;
+    margin: 5px;
+    /* padding: 10px; */
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+   /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 5px;
+    z-index: 10000;
+   
+    
+   }
+  
+  /* Demo Stuff End -> */
+  
+  /* <- Magic Stuff Start */
+  
+  .btn:hover {
+    background-position: right center; /* change the direction of the change here */
+  }
+  
+  .btn-2 {
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+  }
+  .btn-3 {
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+  }
+  
+  
