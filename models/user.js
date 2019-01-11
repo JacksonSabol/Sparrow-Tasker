@@ -19,7 +19,7 @@ module.exports = function (sequelize, Sequelize) {
     User.associate = function (models) {
         // We're saying that a User should belong to an authorized account
         // A User can't be created without an authorized account due to the foreign key constraint
-        User.belongsTo(models.auth, {
+        User.belongsTo(models.Auth, {
             foreignKey: {
                 allowNull: false
             }
