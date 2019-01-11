@@ -17,6 +17,7 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/assets/docs/landingPage.html"));
   });
+
   // Route to User's "Personal" tasks list
   app.get("/lists/personal", function (req, res) {
     // Change to render to Handlebars template when they're complete
@@ -45,6 +46,7 @@ module.exports = function (app) {
   // Route to create a new Task
   app.get("/tasks/new", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/assets/docs/tasksTemplate.html"));
+
   });
   // Routes to Sign In, Sign Up, and Log Out are handled in the auth-routes.js
 
