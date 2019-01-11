@@ -13,9 +13,9 @@
 #div-login-msg,
 #div-lost-msg,
 #div-register-msg {
-    border: 1px solid #dadfe1;
     height: 30px;
     line-height: 28px;
+    text-align: center;
     transition: all ease-in-out 500ms;
 }
 
@@ -40,7 +40,7 @@
     float: left;
     line-height: 28px;
     text-align: center;
-    background-color: #dadfe1;
+    background-color: lavender;
     margin-right: 5px;
     transition: all ease-in-out 500ms;
 }
@@ -58,9 +58,15 @@
 }
 
 #img_logo {
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 200px;
+    max-width: 320px;
+    
 }
+
+#register_login_btn{
+    color: green;
+}
+
 
 /* #########################################
    #    override the bootstrap configs     #
@@ -72,8 +78,7 @@
 }
 
 .modal-content {
-    background-color: #ececec;
-    border: 1px solid #bdc3c7;
+    background-color: white;
     border-radius: 0px;
     outline: 0;
 }
@@ -99,9 +104,6 @@
     margin-bottom: 0px;
 }
 
-.btn {
-    border-radius: 0px;
-}
 
 .btn:focus,
 .btn:active:focus,
