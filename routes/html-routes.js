@@ -19,6 +19,8 @@ module.exports = function (app) {
   });
     
   app.get("/signup", function (req, res) {
+      console.log("requested sigup")
+      console.log(path.join(__dirname, "../public/docs/signUp.html"));
     res.sendFile(path.join(__dirname, "../public/docs/signUp.html"));
   });
     
