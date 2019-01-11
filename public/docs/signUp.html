@@ -7,24 +7,28 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    SPARROW
+    SPARROW Signup
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <link href="/assets/css/black-dashboard.css" rel="stylesheet" />
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 </head>
 
+<body>
+
+
 <div class="embed-responsive embed-responsive-16by9">
   <iframe class="embed-responsive-item" src="/Users/omarcharlesgedeon/Desktop/Sparrow-Tasker/public/assets/video/output_free.mp4" allowfullscreen></iframe>
 </div>
+
 
 
 
@@ -42,16 +46,20 @@
               <div class="card-body">
                 <form>
                   <div class="row">
+
                     <div class="col-md-4 pr-md-1">
                       <div class="form-group">
                         <label>Username</label>
                         <input type="text" class="form-control" placeholder="sparrow123" value="">
+
                       </div>
                     </div>                   
                     <div class="col-md-4 pl-md-1">
                       <div class="form-group">
+
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" placeholder="sp@rrow.com">
+
                       </div>
                     </div>
                   <div class="col-md-3 px-md-1">
@@ -65,13 +73,13 @@
                     <div class="col-md-6 pr-md-1">
                       <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="Mike">
+                        <input type="text" class="form-control" placeholder="Company" value="Mike"  name="firstname">
                       </div>
                     </div>
                     <div class="col-md-6 pl-md-1">
                       <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew" name="lastname" >
                       </div>
                     </div>
                   </div>
@@ -114,7 +122,7 @@
                 </form>
               </div>
               <div class="card-footer">
-                <button type="submit" href = "/Users/omarcharlesgedeon/Desktop/black-dashboard-html-v1.0.1/docs/documentation.html" class="btn btn-fill btn-primary">Save</button>
+                <button type="submit" class="btn btn-fill btn-primary" id="addNewUser">Save</button>
               </div>
             </div>
           </div>
@@ -182,7 +190,7 @@
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Google Maps Plugin    -->
   <!-- Place this tag in your head or just before your close body tag. -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
   <!-- Chart JS -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->

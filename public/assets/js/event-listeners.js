@@ -1,13 +1,20 @@
+$(document).ready(function(){
+    
+
+
 // When user clicks on 'Save' button when signing up
 $("#sign-up").on("click", function (event) {
     // Prevent default action of refreshing page
     event.preventDefault();
     // Assign a variable to hold the id of the button 'clicked'
     // Send an AJAX POST-request with jQuery
+    console.log("signed up");
+    window.location.href = "/signup"
     $.ajax({
         url: "/signup",
         type: 'GET',
         success: function (response) {
+            console.log("success signed up")
 			// Do something with the response if necessary
             // This reloads the page, for example
             // location.reload();
@@ -28,6 +35,7 @@ $("#addNewUser").on("click", function (event) {
 			// Do something with the response if necessary
             // This reloads the page, for example
             // location.reload();
+            window.location.href = "/dashboard"
         }
     });
 });
@@ -136,4 +144,6 @@ $("#completed-tasks-link").on("click", function (event) {
             // location.reload();
         }
     });
+});
+
 });
