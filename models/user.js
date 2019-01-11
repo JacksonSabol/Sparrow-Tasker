@@ -2,18 +2,18 @@ module.exports = function (sequelize, Sequelize) {
 
     var User = sequelize.define('User', {
         firstName: {
-            type: sequelize.STRING,
+            type: Sequelize.STRING,
             notEmpty: true
         },
         lastName: {
-            type: sequelize.STRING,
+            type: Sequelize.STRING,
             notEmpty: true
         },
         rating: {
-            type: sequelize.INTEGER
+            type: Sequelize.INTEGER
         },
         balance: {
-            type: sequelize.DECIMAL(10, 2)
+            type: Sequelize.DECIMAL(10, 2)
         }
     });
     User.associate = function (models) {
