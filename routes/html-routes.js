@@ -15,17 +15,28 @@ module.exports = function (app) {
 
   // Root route loads landingPage.html
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/assets/docs/landingPage.html"));
+    res.sendFile(path.join(__dirname, "../public/docs/landingPage.html"));
   });
+    
+  app.get("/signup", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/docs/signUp.html"));
+  });
+    
+   app.get("/signin", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/docs/signin.html"));
+  });
+  
+
+    
   // Route to User's "Personal" tasks list
   app.get("/lists/personal", function (req, res) {
     // Change to render to Handlebars template when they're complete
-    res.sendFile(path.join(__dirname, "../public/assets/docs/documentation.html"));
+    res.sendFile(path.join(__dirname, "../public/docs/documentation.html"));
   });
   // Route to User's "Outsourced" tasks list
   app.get("/lists/outsourced", function (req, res) {
     // Change to render to Handlebars template when they're complete
-    res.sendFile(path.join(__dirname, "../public/assets/docs/outsourced.html"));
+    res.sendFile(path.join(__dirname, "../public/docs/outsourced.html"));
   });
   // Route to User's "Claimed" tasks list
   app.get("/lists/claimed", function (req, res) {
@@ -40,11 +51,12 @@ module.exports = function (app) {
   // Route to update User's profile page
   app.get("/update/profile", function (req, res) {
     // Could potentially use a DB query and Handlebars to render User's current information into the placeholders of the input fields
-    res.sendFile(path.join(__dirname, "../public/assets/docs/sparrowUser.html"));
+    res.sendFile(path.join(__dirname, "../public/docs/sparrowUser.html"));
   });
   // Route to create a new Task
   app.get("/tasks/new", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/assets/docs/tasksTemplate.html"));
+    res.sendFile(path.join(__dirname, "../public/docs/tasksTemplate.html"));
+
   });
   // Routes to Sign In, Sign Up, and Log Out are handled in the auth-routes.js
 
