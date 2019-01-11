@@ -18,10 +18,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/assets/docs/landingPage.html"));
   });
 
-  // login page
-//  app.get("/signup", function(req, res) {
-//     res.render("signup");
-// });
+  // signup page
+  app.get("/signup", function(req, res) {
+     res.sendFile(path.join(__dirname, "../public/assets/docs/signUp.html"));
+ });
 //
 //  // blog route loads blog.html
 //  app.get("/login", function(req, res) {

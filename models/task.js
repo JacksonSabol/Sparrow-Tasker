@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         status: {
-            type: Sequelize.ENUM('Personal', 'Outsourced', 'Claimed', 'In-Progress', 'Completed', 'Verified'),
+            type: sequelize.ENUM('Personal', 'Outsourced', 'Claimed', 'In-Progress', 'Completed', 'Verified'),
             allowNull: false,
             defaultValue: 'Personal'
         },

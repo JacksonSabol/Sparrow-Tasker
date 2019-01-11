@@ -5,9 +5,9 @@ var passport = require("../config/passport/passport.js")
 //console.log("passport",passport);
 module.exports = function(app,passport) {
  
-  app.get('/signup', function(req, res) {
-     res.render("signup");
- });
+//  app.get('/signup', function(req, res) {
+//     res.render("signup");
+// });
     app.get('/signin', function(req, res) {
      res.render("signin");
  });
