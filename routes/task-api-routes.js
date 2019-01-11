@@ -47,16 +47,22 @@ module.exports = function (app) {
       },
       include: [db.User]
     }).then(function (dbTask) {
-      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
+      // Send response to DOM for display
       res.json(dbTask);
     });
   });
 
   // POST route for saving a new task
   app.post("/api/tasks", function (req, res) {
-    db.Task.create(req.body).then(function (dbTask) {
+    db.Task.create(req.body).then(function (data) {
       // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      res.json(dbTask);
+      // res.json(dbTask);
+      // Assign a variable to point to object to hold the data from the SQL database
+      var hbsObject = {
+        tasks: data
+      };
+      // Render the new object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
+      res.render("documentation.handlebars", hbsObject);
     });
   });
 
@@ -66,9 +72,15 @@ module.exports = function (app) {
       where: {
         id: req.params.id
       }
-    }).then(function (dbTask) {
+    }).then(function (data) {
       // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      res.json(dbTask);
+      // res.json(dbTask);
+      // Assign a variable to point to object to hold the data from the SQL database
+      var hbsObject = {
+        tasks: data
+      };
+      // Render the new object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
+      res.render("documentation.handlebars", hbsObject);
     });
   });
 
@@ -80,9 +92,14 @@ module.exports = function (app) {
         where: {
           id: req.body.id
         }
-      }).then(function (dbTask) {
-        // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-        res.json(dbTask);
+      }).then(function (data) {
+        // res.json(dbTask);
+        // Assign a variable to point to object to hold the data from the SQL database
+        var hbsObject = {
+          tasks: data
+        };
+        // Render the updated object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
+        res.render("documentation.handlebars", hbsObject);
       });
   });
   // PUT route for updating status of task based on characteristic of 'update' button clicked on the 'body' of the page
@@ -94,11 +111,11 @@ module.exports = function (app) {
           id: req.body.id
         }
       }).then(function (dbTask) {
-        // Once Handlebars pages are set up, render JSON object to the template instead of as a response
+        // Return the updated Task object as a JSON response for management on the front-end Progress bar - no need to render to a Handlebars template
         res.json(dbTask);
       });
   });
-  // PUT route for updating status of task to 'Verified' so users' dollar balances are editted as well
+  // PUT route for updating status of task to 'Verified' so users' dollar balances are edited as well
   app.put("/api/tasks/verified", function (req, res) {
     db.Task.update(
       { status: req.body.status },
@@ -106,9 +123,9 @@ module.exports = function (app) {
         where: {
           id: req.body.id
         }
-      }).then(function (dbTask) {
+      }).then(function (data) {
         // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-        res.json(dbTask);
+        // res.json(dbTask);
         // Update User's dollar balance
         db.User.update(
           { balance: req.body.offer_amount }, // Set on HTML/Handlebars when making the task
@@ -116,20 +133,26 @@ module.exports = function (app) {
             where: {
               id: req.body.id // Set task ID into every button on HTML/Handlebars pages to task>foreignKey
             }
-          }).then(function (dbTask) {
+          }).then(function (offerUpdate) {
             // Return true to continue
             res.json(true);
           });
-          db.User.update(
-            { balance: req.body.offer_amount }, // Set on HTML/Handlebars when making the task
-            {
-              where: {
-                id: req.body.id // Set sparrow_id into button on HTML/Handlebars
-              }
-            }).then(function (dbTask) {
-              // Return true to continue
-              res.json(true);
-            });
+        db.User.update(
+          { balance: req.body.offer_amount }, // Set on HTML/Handlebars when making the task
+          {
+            where: {
+              id: req.body.id // Set sparrow_id into button on HTML/Handlebars
+            }
+          }).then(function (offerUpdate) {
+            // Return true to continue
+            // res.json(true);
+            // Assign a variable to point to object to hold the data from the SQL database
+            var hbsObject = {
+              tasks: data
+            };
+            // Render the updated object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
+            res.render("documentation.handlebars", hbsObject);
+          });
       });
   });
 };
