@@ -1,7 +1,7 @@
 //var authController = require('../controllers/authcontroller.js');
 //var express = require("express");
 //var passport = require("passport");
-var passport = require("../config/passport/passport.js")
+var passport = require("../config/passport/passport.js");
 //console.log("passport",passport);
 module.exports = function(app,passport) {
  
@@ -24,12 +24,30 @@ module.exports = function(app,passport) {
        });
    });
     
-   app.post('/signup', passport.authenticate('local-signup', {
+    app.post('/signup/newuser', passport.authenticate('local-signup', {
+       
         successRedirect: '/dashboard',
  
         failureRedirect: '/signup'
     }
-                                            ));
+                                                      ));
+                                                      
+//    app.post("/signup/newuser",function(req,res){
+//            console.log(req.body.email);
+//             console.log("post recieved!")
+//             
+//             
+//             })
+                                                      
+                                                      
+                                                      
+//   app.post('/signup/newuser', passport.authenticate('local-signup', {
+//       
+//        successRedirect: '/dashboard',
+// 
+//        failureRedirect: '/signup'
+//    }
+//));
     app.post('/signin', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
  

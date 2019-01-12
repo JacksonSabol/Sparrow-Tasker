@@ -7,6 +7,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 
 module.exports = function(passport, auth) {
     var Auth = auth;
+    //console.log(Auth);
 
     var LocalStrategy = require('passport-local').Strategy;
  
@@ -20,6 +21,7 @@ passport.use('local-signup', new LocalStrategy(
         passReqToCallback: true // allows us to pass back the entire request to the callback
  
     },function(req, email, password, done) {
+        console.log(email)
         var generateHash = function(password) {
             return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
  
@@ -29,7 +31,7 @@ passport.use('local-signup', new LocalStrategy(
         email: email
     }
     }).then(function(user) {
-    //console.log(user);
+    console.log(user);
     if(user) {
         return done(null, false, {
             message: 'That email is already taken'

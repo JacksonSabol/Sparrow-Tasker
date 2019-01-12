@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Task = sequelize.define("Task", {
+    var Task = sequelize.define("task", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -37,15 +37,15 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    Task.associate = function (models) {
-        // We're saying that a Task should belong to a User
-        // A Task can't be created without a User due to the foreign key constraint
-        Task.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+//    Task.associate = function (models) {
+//        // We're saying that a Task should belong to a User
+//        // A Task can't be created without a User due to the foreign key constraint
+//        Task.belongsTo(models.User, {
+//            foreignKey: {
+//                allowNull: false
+//            }
+//        });
+//    };
 
     return Task;
 };
