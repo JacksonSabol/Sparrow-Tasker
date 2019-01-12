@@ -117,42 +117,47 @@ module.exports = function (app) {
   });
   // PUT route for updating status of task to 'Verified' so users' dollar balances are edited as well
   app.put("/api/tasks/verified", function (req, res) {
-    db.Task.update(
+    // Update the Task status to 'Verified'
+    var updateTask = db.Task.update(
       { status: req.body.status },
       {
         where: {
           id: req.body.id
         }
-      }).then(function (data) {
-        // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-        // res.json(dbTask);
-        // Update User's dollar balance
-        db.User.update(
-          { balance: req.body.offer_amount }, // Set on HTML/Handlebars when making the task
-          {
-            where: {
-              id: req.body.id // Set task ID into every button on HTML/Handlebars pages to task>foreignKey
-            }
-          }).then(function (offerUpdate) {
-            // Return true to continue
-            res.json(true);
-          });
-        db.User.update(
-          { balance: req.body.offer_amount }, // Set on HTML/Handlebars when making the task
-          {
-            where: {
-              id: req.body.id // Set sparrow_id into button on HTML/Handlebars
-            }
-          }).then(function (offerUpdate) {
-            // Return true to continue
-            // res.json(true);
-            // Assign a variable to point to object to hold the data from the SQL database
-            var hbsObject = {
-              tasks: data
-            };
-            // Render the updated object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
-            res.render("documentation.handlebars", hbsObject);
-          });
+      });
+
+    var updateUserBalance = db.User.update(
+      { balance: req.body.offer_amount }, // Set on HTML/Handlebars when making the task
+      {
+        where: {
+          id: req.body.id // Set task ID into every button on HTML/Handlebars pages to task>foreignKey
+        }
+      });
+
+    var updateSparrowBalance = db.User.update(
+      { balance: req.body.offer_amount }, // Set on HTML/Handlebars when making the task
+      {
+        where: {
+          id: req.body.id // Set sparrow_id into button on HTML/Handlebars
+        }
+      });
+    Promise
+      .all([updateTask, updateUserBalance, updateSparrowBalance])
+      .then(function (responses) {
+        console.log('**********COMPLETE RESULTS****************');
+        console.log(responses[0]); // updated Task
+        console.log(responses[1]); // updated User balance
+        console.log(responses[2]); // updated Sparrow balance
+        // Assign a variable to point to object to hold the data from the SQL database
+        var hbsObject = {
+          tasks: responses[0]
+        };
+        // Render the updated object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
+        res.render("documentation.handlebars", hbsObject);
+      })
+      .catch(function (err) {
+        console.log('**********ERROR RESULT****************');
+        console.log(err);
       });
   });
 };
