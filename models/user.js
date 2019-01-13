@@ -29,7 +29,7 @@ module.exports = function (sequelize, Sequelize) {
 //        User.hasMany(models.Task, {
 //            onDelete: "cascade"
 //        });
-//    };
+//  };
 
     return User;
 

@@ -72,9 +72,9 @@
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                 <span id="text-login-msg">Enter your username & password.</span>
                             </div>
-                            <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)"
+                            <input id="login_username" class="form-control" type="text" placeholder="Your email" name=email
                                 required>
-                            <input id="login_password" class="form-control" type="password" placeholder="Password"
+                            <input id="login_password" class="form-control" type="password" placeholder="Password" name="password"
                                 required>
                             <div class="checkbox">
                                 <label>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="modal-footer">
                             <div>
-                                <button type="submit" class="btn btn-warning btn-lg btn-block">Login</button>
+                                <button type="submit" class="btn btn-warning btn-lg btn-block" id="loginUser">Login</button>
                             </div>
                             <div>
                                 <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>

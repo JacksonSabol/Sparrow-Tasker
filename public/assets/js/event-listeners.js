@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
 
-
+//** working
 // When user clicks on 'Save' button when signing up
 $("#sign-up").on("click", function (event) {
     // Prevent default action of refreshing page
@@ -22,7 +22,7 @@ $("#sign-up").on("click", function (event) {
         }
     });
 });
-
+//** working
 // When user clicks on 'Save' button when signing up
 $("#addNewUser").on("click", function (event) {
     // Prevent default action of refreshing page
@@ -41,7 +41,7 @@ $("#addNewUser").on("click", function (event) {
         }
     });
 });
-
+//** pop-up signin is used. can be deleted.
 // When user clicks on 'Save' button when signing up
 $("#signin").on("click", function (event) {
     // Prevent default action of refreshing page
@@ -59,41 +59,51 @@ $("#signin").on("click", function (event) {
     });
 });
 
+//** not working
 // When user clicks on 'Save' button when signing up
 $("#loginUser").on("click", function (event) {
     // Prevent default action of refreshing page
+    console.log("logged in")
     event.preventDefault();
+    
     // Assign a variable to hold the id of the button 'clicked'
     // Send an AJAX POST-request with jQuery
     $.ajax({
-        url: "/signin",
+        url: "/signin/user",
         type: 'POST',
         success: function (response) {
 			// Do something with the response if necessary
             // This reloads the page, for example
             // location.reload();
+            //window.location.href = "/dash"
+             console.log("inside post success")
+             
+            
         }
     });
 });
 
+    
 // When user clicks on 'Save' button when signing up
-$("#personal-tasks-link").on("click", function (event) {
-    // Prevent default action of refreshing page
-    event.preventDefault();
-    // Assign a variable to hold the id of the button 'clicked'
-    var buttonClicked = $(this).data("id");
-    // Send an AJAX POST-request with jQuery
-    $.ajax({
-        url: "/api/tasks" + buttonClicked + "",
-        type: 'POST',
-        success: function (response) {
-			// Do something with the response if necessary
-            // This reloads the page, for example
-            // location.reload();
-        }
-    });
-});
+//$("#personal-tasks-link").on("click", function (event) {
+//    // Prevent default action of refreshing page
+//    event.preventDefault();
+//    // Assign a variable to hold the id of the button 'clicked'
+//    var buttonClicked = $(this).data("id");
+//    // Send an AJAX POST-request with jQuery
+//    $.ajax({
+//        url: "/personal/tasks" + buttonClicked + "",
+//        type: 'POST',
+//        success: function (response) {
+//           
+//			// Do something with the response if necessary
+//            // This reloads the page, for example
+//            // location.reload();
+//        }
+//    });
+//});
 
+// ** 
 // When user clicks on 'Save' button when signing up
 $("#claimed-tasks-link").on("click", function (event) {
     // Prevent default action of refreshing page

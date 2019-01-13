@@ -23,11 +23,18 @@ module.exports = function (app) {
       console.log(path.join(__dirname, "../public/docs/signUp.html"));
     res.sendFile(path.join(__dirname, "../public/docs/signUp.html"));
   });
-    
-   app.get("/signin", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/docs/signin.html"));
-  });
-  
+
+//pop-up sign in used. delete below getb before final staging
+
+//   app.get("/signin", function (req, res) {
+//    res.sendFile(path.join(__dirname, "../public/docs/signin.html"));
+//  });
+//    
+//    app.get("/dashboard", function (req, res) {
+//        console.log("dashboard redirected")
+//    res.sendFile(path.join(__dirname, "../public/docs/global.html"));
+//        
+//});
 
     
   // Route to User's "Personal" tasks list
