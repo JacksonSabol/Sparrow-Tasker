@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <title>
-    SPARROW
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-</head>
-
-<body>
-  <div class="wrapper">
+ <div class="wrapper">
     <div class="sidebar">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
@@ -173,7 +148,7 @@
                         <div class="col-sm-12">
                           <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                             <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                              <input type="radio" name="options" checked id="personal-tasks-link">
+                              <input type="radio" name="options" checked>
                               <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Personal Tasks</span>
                               <span class="d-block d-sm-none">
                                 <i class="tim-icons icon-single-02"></i>
@@ -205,12 +180,14 @@
                         <div class="card-body ">
                           <div class="table-full-width table-responsive">
                             <table class="table">
-                              <tbody>
+                               <tbody>
+                                  {{#each tasks}}
+                                  {{#is this.status "Global"}}
                                 <tr>
                                   <td>
                                     <div class="form-check">
                                       <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
+                                        <input class="form-check-input" type="checkbox" value="" data-id="{{this.id}}">
                                         <span class="form-check-sign">
                                           <span class="check"></span>
                                         </span>
@@ -218,8 +195,10 @@
                                     </div>
                                   </td>
                                   <td>
-                                    <p class="title">Update the Documentation</p>
-                                    <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
+                                    <p class="title">{{this.title}}</p>
+                                    <p class="description">{{this.description}}</p>
+                                    <p class="offer">{{this.offer_amount}}</p>
+                                    <p class="deadline">{{this.deadline}}</p>
                                   </td>
                                   <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" title="" class="btn btn-link"
@@ -228,121 +207,10 @@
                                     </button>
                                   </td>
                                 </tr>
-                                <tr>
-                                  <td>
-                                    <div class="form-check">
-                                      <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="" checked="">
-                                        <span class="form-check-sign">
-                                          <span class="check"></span>
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <p class="title">GDPR Compliance</p>
-                                    <p class="text-muted">The GDPR is a regulation that requires businesses to protect
-                                      the personal data and privacy of Europe citizens for transactions that occur
-                                      within EU member states.</p>
-                                  </td>
-                                  <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                      data-original-title="Edit Task">
-                                      <i class="tim-icons icon-pencil"></i>
-                                    </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div class="form-check">
-                                      <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign">
-                                          <span class="check"></span>
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <p class="title">Solve the issues</p>
-                                    <p class="text-muted">Fifty percent of all respondents said they would be more
-                                      likely to shop at a company </p>
-                                  </td>
-                                  <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                      data-original-title="Edit Task">
-                                      <i class="tim-icons icon-pencil"></i>
-                                    </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div class="form-check">
-                                      <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign">
-                                          <span class="check"></span>
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <p class="title">Release v2.0.0</p>
-                                    <p class="text-muted">Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM</p>
-                                  </td>
-                                  <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                      data-original-title="Edit Task">
-                                      <i class="tim-icons icon-pencil"></i>
-                                    </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div class="form-check">
-                                      <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign">
-                                          <span class="check"></span>
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <p class="title">Export the processed files</p>
-                                    <p class="text-muted">The report also shows that consumers will not easily forgive
-                                      a company once a breach exposing their personal data occurs. </p>
-                                  </td>
-                                  <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                      data-original-title="Edit Task">
-                                      <i class="tim-icons icon-pencil"></i>
-                                    </button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div class="form-check">
-                                      <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign">
-                                          <span class="check"></span>
-                                        </span>
-                                      </label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <p class="title">Arrival at export process</p>
-                                    <p class="text-muted">Capitol Hill, Seattle, WA 12:34 AM</p>
-                                  </td>
-                                  <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                      data-original-title="Edit Task">
-                                      <i class="tim-icons icon-pencil"></i>
-                                    </button>
-                                  </td>
-                                </tr>
+                                {{/is}}
+                                {{/each}}
                               </tbody>
+                                
                             </table>
                           </div>
                         </div>
@@ -439,7 +307,6 @@
                     </ul>
                   </div>
                 </div>
-          </div>
                 <!--   Core JS Files   -->
                 <script src="../assets/js/core/jquery.min.js"></script>
                 <script src="../assets/js/core/popper.min.js"></script>
@@ -447,7 +314,7 @@
                 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
                 <!--  Google Maps Plugin    -->
                 <!-- Place this tag in your head or just before your close body tag. -->
-<!--                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
+                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
                 <!-- Chart JS -->
                 <script src="../assets/js/plugins/chartjs.min.js"></script>
                 <!--  Notifications Plugin    -->
@@ -574,5 +441,3 @@
 
                   });
                 </script>
-            </html>
-        

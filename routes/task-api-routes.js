@@ -13,7 +13,7 @@ var db = require("../models");
 module.exports = function (app) {
 
   // GET route for getting all of the logged-in user's tasks
-  app.get("/api/tasks", function (req, res) {
+  app.get("/tasks/:userId", function (req, res) {
     var query = {};
     if (req.query.user_id) {
       query.UserId = req.query.user_id;
@@ -21,9 +21,9 @@ module.exports = function (app) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.User
-    db.Task.findAll({
-      where: query,
-      include: [db.User]
+    db.task.findAll({
+      where: userid
+      //include: [db.User]
     }).then(function (data) {
       // Once Handlebars pages are set up, render JSON object to the template instead of as a response
       // res.json(data);
@@ -32,7 +32,7 @@ module.exports = function (app) {
         tasks: data
       };
       // Render the new object to the '<pageName>.handlebars' template
-      res.render("documentation.handlebars", hbsObject);
+      res.render("global", hbsObject);
     });
   });
 
