@@ -13,6 +13,24 @@ var passport = require("passport");
 // Routes
 // =============================================================
 module.exports = function (app) {
+  // GET route for getting all of the logged-in user's tasks based on parameter passed
+  app.get("/api/tasks/:status", loggedIn, function (req, res, next) {
+    var getUserID = req.user.id;
+    console.log("Task API Route: " + getUserID);
+    db.Task.findAll({
+      where: { AuthId: getUserID },
+      include: [db.Auth]
+    }).then(function (data) {
+      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
+      // res.json(data);
+      // Assign a variable to point to object to hold the data from the SQL database
+      var hbsObject = {
+        tasks: data
+      };
+      // Render the new object to the '<pageName>.handlebars' template
+      res.render("dashboard", hbsObject);
+    });
+  });
   // GET route for getting all of the logged-in user's Personal tasks
   app.get("/tasks/personal", loggedIn, function (req, res, next) {
     var getUserID = req.user.id;
