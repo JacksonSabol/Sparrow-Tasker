@@ -63,7 +63,6 @@ $("#signin").on("click", function (event) {
 // When user clicks on 'Save' button when signing up
 $("#loginUser").on("click", function (event) {
     // Prevent default action of refreshing page
-    console.log("logged in")
     event.preventDefault();
     
     // Assign a variable to hold the id of the button 'clicked'
@@ -76,7 +75,7 @@ $("#loginUser").on("click", function (event) {
             // This reloads the page, for example
             // location.reload();
             //window.location.href = "/dash"
-             console.log("inside post success")
+             console.log(response);
              
             
         }
