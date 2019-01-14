@@ -54,15 +54,16 @@ module.exports = function (app) {
 
   // POST route for saving a new task
   app.post("/api/tasks", function (req, res) {
+    console.log(req.body);
     db.Task.create(req.body).then(function (data) {
       // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      // res.json(dbTask);
+      res.json(data);
       // Assign a variable to point to object to hold the data from the SQL database
-      var hbsObject = {
-        tasks: data
-      };
+      // var hbsObject = {
+      //   tasks: data
+      // };
       // Render the new object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
-      res.render("documentation.handlebars", hbsObject);
+      // res.render("dashboard", hbsObject);
     });
   });
 
