@@ -11,7 +11,7 @@ module.exports = function (app, passport) {
 
     app.get("/dashboard/:userId", isLoggedIn, function (req, res) {
         var getUserId = req.params.userId;
-        console.log(getUserId);
+        console.log("Auth Route: " + getUserId);
         db.Task.findAll({
             where: { AuthId: getUserId },
             include: [db.Auth]
@@ -20,6 +20,14 @@ module.exports = function (app, passport) {
             res.render("dashboard", hbsObject);
         });
     });
+    // Login test
+    app.post("/login",
+        passport.authenticate("local"),
+        function (req, res) {
+            // If this function gets called, authentication was successful.
+            // `req.user` contains the authenticated user.
+            res.redirect("/tasks/personal");
+        });
 
     app.get("/logout", function (req, res) {
         console.log("Log Out Route Hit");
@@ -33,34 +41,9 @@ module.exports = function (app, passport) {
 
     app.post('/signup/newuser', passport.authenticate('local-signup'), function (req, res) {
         console.log(req.user);
-        res.redirect('/dashboard/' + req.user.id);
+        res.redirect('/tasks/personal');
     });
 
-    //    app.post('/signup/newuser', passport.authenticate('local-signup', 
-    //        {
-    //       
-    //        successRedirect: "/dashboard",
-    // 
-    //        failureRedirect: '/'
-    //    }
-    //                                                      ));
-    //                                                      
-    //    app.post("/signup/newuser",function(req,res){
-    //            console.log(req.body.email);
-    //             console.log("post recieved!")
-    //             
-    //             
-    //             })
-
-
-
-    //   app.post('/signup/newuser', passport.authenticate('local-signup', {
-    //       
-    //        successRedirect: '/dashboard',
-    // 
-    //        failureRedirect: '/signup'
-    //    }
-    //));
     app.post('/signin/user', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
 
@@ -74,9 +57,4 @@ module.exports = function (app, passport) {
         res.redirect('/signin');
 
     }
-
-
-
-
-
 }
