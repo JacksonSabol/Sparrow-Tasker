@@ -20,9 +20,44 @@
         </li>
 
         <li>
-          <a href="./tasksTemplate.html">
+          <a href="/tasks/new">
             <i class="tim-icons icon-single-02"></i>
             <p>New Task</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/personal">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/claimed">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Claimed Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/outsourced">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Outsourced Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/completed">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Completed Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/global">
+            <i class="tim-icons icon-single-02"></i>
+            <p>All Tasks</p>
           </a>
         </li>
 
@@ -147,21 +182,21 @@
                         <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                           <label class="btn btn-sm btn-primary btn-simple active" id="0">
                             <input type="radio" name="options" checked>
-                            <span href="../public/assets/docs/documentation.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Personal
+                            <span href="" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Personal
                               Tasks</span>
                             <span class="d-block d-sm-none">
                               <i class="tim-icons icon-single-02"></i>
                             </span>
                           </label>
                           <label class="btn btn-sm btn-primary btn-simple" id="1">
-                            <input type="radio" class="d-none d-sm-none" name="options">
-                            <span href="../public/assets/docs/claimed.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Claimed
+                            <input type="radio" class="d-none d-sm-none" name="options" value="/tasks/claimed">
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Claimed
                               Tasks</span>
                             <span class="d-block d-sm-none">
                               <i class="tim-icons icon-gift-2"></i>
                             </span>
                           </label>
-                          <label class="btn btn-sm btn-primary btn-simple" id="1">
+                          <label class="btn btn-sm btn-primary btn-simple" id="2">
                             <input type="radio" class="d-none d-sm-none" name="options">
                             <span href="../public/assets/docs/outsourced.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Outsourced
                               Tasks</span>
@@ -169,7 +204,7 @@
                               <i class="tim-icons icon-gift-2"></i>
                             </span>
                           </label>
-                          <label class="btn btn-sm btn-primary btn-simple" id="1">
+                          <label class="btn btn-sm btn-primary btn-simple" id="3">
                             <input type="radio" class="d-none d-sm-none" name="options">
                             <span href="../public/assets/docs/global.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Global
                               Tasks</span>
@@ -177,7 +212,7 @@
                               <i class="tim-icons icon-gift-2"></i>
                             </span>
                           </label>
-                          <label class="btn btn-sm btn-primary btn-simple" id="2">
+                          <label class="btn btn-sm btn-primary btn-simple" id="4">
                             <input type="radio" class="d-none" name="options">
                             <span href="../public/assets/docs/completed.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Completed
                               Tasks</span>
@@ -192,7 +227,7 @@
                           <table class="table">
                             <tbody>
                               {{#each tasks}}
-                              {{#is this.status "Personal"}}
+                              {{!-- {{#is this.status "Personal"}} --}}
                               <tr>
                                 <td>
                                   <div class="form-check">
@@ -214,7 +249,7 @@
                                   </button>
                                 </td>
                               </tr>
-                              {{/is}}
+                              {{!-- {{/is}} --}}
                               {{/each}}
                             </tbody>
                           </table>
@@ -329,17 +364,10 @@
         <script src="../assets/js/core/popper.min.js"></script>
         <script src="../assets/js/core/bootstrap.min.js"></script>
         <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-        <!--  Google Maps Plugin    -->
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-        <!-- Chart JS -->
-        <script src="../assets/js/plugins/chartjs.min.js"></script>
         <!--  Notifications Plugin    -->
         <script src="../assets/js/plugins/bootstrap-notify.js"></script>
         <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
-        <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-        <script src="../assets/demo/demo.js"></script>
         <script>
           $(document).ready(function () {
             $().ready(function () {

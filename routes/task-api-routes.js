@@ -7,23 +7,19 @@
 
 // Requiring our models
 var db = require("../models");
-
+// var express = require("express");
+var passport = require("passport");
+// var passport = require("../config/passport/passport.js");
 // Routes
 // =============================================================
 module.exports = function (app) {
-
-  // GET route for getting all of the logged-in user's tasks
-  app.get("/tasks/:userId", function (req, res) {
-    var query = {};
-    if (req.query.user_id) {
-      query.UserId = req.query.user_id;
-    }
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.User
-    db.task.findAll({
-      where: userid
-      //include: [db.User]
+  // GET route for getting all of the logged-in user's Personal tasks
+  app.get("/tasks/personal", loggedIn, function (req, res, next) {
+    var getUserID = req.user.id;
+    console.log("Task API Route: " + getUserID);
+    db.Task.findAll({
+      where: { AuthId: getUserID },
+      include: [db.Auth]
     }).then(function (data) {
       // Once Handlebars pages are set up, render JSON object to the template instead of as a response
       // res.json(data);
@@ -32,7 +28,25 @@ module.exports = function (app) {
         tasks: data
       };
       // Render the new object to the '<pageName>.handlebars' template
-      res.render("global", hbsObject);
+      res.render("dashboard", hbsObject);
+    });
+  });
+  // GET route for getting all of the logged-in user's Claimed tasks
+  app.get("/tasks/claimed", loggedIn, function (req, res, next) {
+    var getUserID = req.user.id;
+    console.log("Task API Route: " + getUserID);
+    db.Task.findAll({
+      where: { AuthId: getUserID },
+      include: [db.Auth]
+    }).then(function (data) {
+      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
+      // res.json(data);
+      // Assign a variable to point to object to hold the data from the SQL database
+      var hbsObject = {
+        tasks: data
+      };
+      // Render the new object to the '<pageName>.handlebars' template
+      res.render("claimed", hbsObject);
     });
   });
 
@@ -53,17 +67,22 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new task
-  app.post("/api/tasks", function (req, res) {
+  app.post("/api/tasks", loggedIn, function (req, res, next) {
+    console.log("Server side New Task");
     console.log(req.body);
-    db.Task.create(req.body).then(function (data) {
-      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      res.json(data);
+    var getUserID = req.user.id;
+    console.log(getUserID);
+    var newTask = req.body;
+    newTask["AuthId"] = getUserID;
+    db.Task.create(newTask).then(function (data) {
+      // Return a true response to redirect on client side
+      res.json(true);
       // Assign a variable to point to object to hold the data from the SQL database
       // var hbsObject = {
       //   tasks: data
       // };
-      // Render the new object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
-      // res.render("dashboard", hbsObject);
+      // Redirect to the GET route for all Personal tasks
+      // res.redirect('/tasks/personal');
     });
   });
 
@@ -162,3 +181,13 @@ module.exports = function (app) {
       });
   });
 };
+// Middleware function to check if user is logged in and get their info if they are
+function loggedIn(req, res, next) {
+  if (req.user) {
+    next();
+  }
+  else {
+    console.log("Logged in was not conserved");
+    res.redirect('/');
+  }
+}
