@@ -18,11 +18,13 @@ module.exports = function(app,passport) {
         
 //    res.sendFile(path.join(__dirname, "../public/docs/global.html"));
         //add data to hbs
+        console.log("inside sigup ");
         var getUserId = req.param.userId;
-        db.user.findOne({
-            where: {id:5}
+        db.task.findAll({
+            where: {userId:4}
         }).then(function(data){
-            var hbsObject = { tasks : data };                   
+            var hbsObject = { tasks : data }; 
+              console.log("hbs - ",hbsObject.tasks.title);
               res.render("global",hbsObject);  
        // res.render("global"); 
        
