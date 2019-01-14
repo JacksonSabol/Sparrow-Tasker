@@ -10,9 +10,6 @@ module.exports = function (app, passport) {
 
 
     app.get("/dashboard/:userId", isLoggedIn, function (req, res) {
-
-        //    res.sendFile(path.join(__dirname, "../public/docs/global.html"));
-        //add data to hbs
         var getUserId = req.params.userId;
         console.log(getUserId);
         db.Task.findAll({
