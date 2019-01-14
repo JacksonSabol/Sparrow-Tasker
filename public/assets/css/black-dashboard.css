@@ -16,6 +16,12 @@
 /*     brand Colors              */
 
 /* navbar color */
+.price-conatain{
+  align-content: center;
+  margin-left: 80%;
+}
+
+
 
 :root {
   --blue: #5e72e4;

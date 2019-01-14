@@ -47,13 +47,13 @@ module.exports = function (sequelize, Sequelize) {
             defaultValue: 'active'
         }
     });
-    Auth.associate = function (models) {
-        // Associating Auth with User
-        // When an Auth is deleted, also delete any associated User
-        Auth.hasMany(models.User, {
-            onDelete: "cascade"
-        });
-    };
+//    Auth.associate = function (models) {
+//        // Associating Auth with User
+//        // When an Auth is deleted, also delete any associated User
+//        Auth.hasMany(models.User, {
+//            onDelete: "cascade"
+//        });
+//    };
 
     return Auth;
 

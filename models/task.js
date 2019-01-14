@@ -16,7 +16,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         status: {
             type: DataTypes.ENUM('Personal', 'Outsourced', 'Claimed', 'In-Progress', 'Completed', 'Verified'),
-            allowNull: false,
             defaultValue: 'Personal'
         },
         // Who claimed the task - User ID of Sparrow
@@ -25,8 +24,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         completed_time: {
             type: DataTypes.TIME,
-            allowNull: false,
-            defaultValue: sequelize.NOW
+            defaultValue: DataTypes.NOW
         },
         deadline: {
             type: DataTypes.TIME,
@@ -36,11 +34,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DECIMAL(10, 2)
         }
     });
-
     Task.associate = function (models) {
         // We're saying that a Task should belong to a User
         // A Task can't be created without a User due to the foreign key constraint
-        Task.belongsTo(models.User, {
+        Task.belongsTo(models.Auth, {
             foreignKey: {
                 allowNull: false
             }

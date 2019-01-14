@@ -43,10 +43,10 @@ require("./routes/auth-routes.js")(app,passport);
 require("./routes/task-api-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 //load passport strategies
-require("./config/passport/passport.js")(passport, db.auth);
+require("./config/passport/passport.js")(passport, db.Auth);
 
 // Set Express to use Handlebars engine to generate HTML layouts
-app.engine("handlebars", exphbs({  }));//SM change it to main before git push
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));//SM change it to main before git push
 app.set("view engine", "handlebars");
 
 // Syncing our sequelize models and then starting our Express app
