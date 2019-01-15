@@ -24,19 +24,12 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/docs/signUp.html"));
   });
 
-//pop-up sign in used. delete below getb before final staging
-
-//   app.get("/signin", function (req, res) {
-//    res.sendFile(path.join(__dirname, "../public/docs/signin.html"));
-//  });
-//    
-//    app.get("/dashboard", function (req, res) {
-//        console.log("dashboard redirected")
-//    res.sendFile(path.join(__dirname, "../public/docs/global.html"));
-//        
-//});
-
+ //Route existing users to login page
+  app.get("/signin", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/docs/login.html"));
+  });
     
+   
   // Route to User's "Personal" tasks list
   app.get("/lists/personal", function (req, res) {
     // Change to render to Handlebars template when they're complete

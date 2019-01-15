@@ -76,6 +76,7 @@ module.exports = function (passport, auth) {
 
 
         function (req, email, password, done) {
+            console.log("*****passport signin******", email);
 
             var Auth = auth;
 
@@ -84,7 +85,7 @@ module.exports = function (passport, auth) {
                 return bCrypt.compareSync(password, userpass);
 
             }
-            console.log("logged to", email)
+            console.log("*****logged to******", email)
             Auth.findOne({
                 where: {
                     email: email
@@ -96,6 +97,7 @@ module.exports = function (passport, auth) {
                     return done(null, false, {
                         message: 'Email does not exist'
                     });
+                    console.log("Email does not exist");
 
                 }
 
@@ -104,6 +106,7 @@ module.exports = function (passport, auth) {
                     return done(null, false, {
                         message: 'Incorrect password.'
                     });
+                    console.log("incorrect password");
 
                 }
 
@@ -119,6 +122,7 @@ module.exports = function (passport, auth) {
                 return done(null, false, {
                     message: 'Something went wrong with your Signin'
                 });
+                console.log("Something went wrong with your Signin");
 
             });
 
