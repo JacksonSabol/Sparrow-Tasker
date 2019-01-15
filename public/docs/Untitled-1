@@ -1,0 +1,9 @@
+$(function() {
+  setTimeout(function() {
+    var jumpPos = $('#jump').offset().top;
+    if($(document).scrollTop() <= jumpPos)
+      $('html, body').animate({
+        scrollTop: jumpPos
+      }, 1000);
+  }, 14000);
+});
