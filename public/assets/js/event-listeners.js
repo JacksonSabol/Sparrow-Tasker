@@ -101,96 +101,14 @@ $(document).ready(function () {
     $("#addNewUser").on("click", function (event) {
         // Prevent default action of refreshing page
         event.preventDefault();
-        // Assign a variable to hold the id of the button 'clicked'
         // Send an AJAX POST-request with jQuery
         $.ajax({
             url: "/signup/newuser",
             type: 'POST',
             success: function (response) {
                 // Do something with the response if necessary
-                // This reloads the page, for example
-                location.reload();
-                console.log("post")
-                //window.location.href = "/dashboard"
-            }
-        });
-    });
-    
-    // directs existing user to signin page
-    // When user clicks on 'Save' button when signing up
-    $("#sign-in").on("click", function (event) {
-    // Prevent default action of refreshing page
-    event.preventDefault();
-    // Assign a variable to hold the id of the button 'clicked'
-    // Send an AJAX POST-request with jQuery
-    console.log("signed in form");
-    //$(this).attr("href","/signup");
-    window.location.href = "/signin"
-   $.ajax({
-       url: "/signin",
-       type: 'GET',
-       success: function (response) {
-           console.log("success signed in form")
-			// Do something with the response if necessary
-           // This reloads the page, for example
-           // location.reload();
-       }
-   });
-});
-
-    // ** 
-    // When user clicks on 'Save' button when signing up
-    $("#claimed-tasks-link").on("click", function (event) {
-        // Prevent default action of refreshing page
-        event.preventDefault();
-        // Assign a variable to hold the id of the button 'clicked'
-        var buttonClicked = $(this).data("id");
-        // Send an AJAX POST-request with jQuery
-        $.ajax({
-            url: "/api/tasks" + buttonClicked + "",
-            type: 'POST',
-            success: function (response) {
-                // Do something with the response if necessary
-                // This reloads the page, for example
                 // location.reload();
             }
         });
     });
-
-    // When user clicks on 'Save' button when signing up
-    $("#outsourced-tasks-link").on("click", function (event) {
-        // Prevent default action of refreshing page
-        event.preventDefault();
-        // Assign a variable to hold the id of the button 'clicked'
-        var buttonClicked = $(this).data("id");
-        // Send an AJAX POST-request with jQuery
-        $.ajax({
-            url: "/api/tasks" + buttonClicked + "",
-            type: 'POST',
-            success: function (response) {
-                // Do something with the response if necessary
-                // This reloads the page, for example
-                // location.reload();
-            }
-        });
-    });
-
-    // When user clicks on 'Save' button when signing up
-    $("#completed-tasks-link").on("click", function (event) {
-        // Prevent default action of refreshing page
-        event.preventDefault();
-        // Assign a variable to hold the id of the button 'clicked'
-        var buttonClicked = $(this).data("id");
-        // Send an AJAX POST-request with jQuery
-        $.ajax({
-            url: "/api/tasks" + buttonClicked + "",
-            type: 'POST',
-            success: function (response) {
-                // Do something with the response if necessary
-                // This reloads the page, for example
-                // location.reload();
-            }
-        });
-    });
-
 });

@@ -184,6 +184,7 @@ module.exports = function (app) {
         res.json(true);
       });
   });
+  // Unused
   // PUT route for updating status of task to 'Verified' so users' dollar balances are edited as well
   app.put("/api/tasks/verified", function (req, res) {
     // Update the Task status to 'Verified'
@@ -213,19 +214,18 @@ module.exports = function (app) {
     Promise
       .all([updateTask, updateUserBalance, updateSparrowBalance])
       .then(function (responses) {
-        console.log('**********COMPLETE RESULTS****************');
-        console.log(responses[0]); // updated Task
-        console.log(responses[1]); // updated User balance
-        console.log(responses[2]); // updated Sparrow balance
+        // console.log('**********COMPLETE RESULTS****************');
+        // console.log(responses[0]); // updated Task
+        // console.log(responses[1]); // updated User balance
+        // console.log(responses[2]); // updated Sparrow balance
         // Assign a variable to point to object to hold the data from the SQL database
         var hbsObject = {
           tasks: responses[0]
         };
         // Render the updated object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
-        res.render("documentation.handlebars", hbsObject);
+        res.render("dashboard", hbsObject);
       })
       .catch(function (err) {
-        console.log('**********ERROR RESULT****************');
         console.log(err);
       });
   });
