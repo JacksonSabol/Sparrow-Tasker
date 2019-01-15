@@ -34,7 +34,7 @@ module.exports = function (app) {
     var getUserID = req.user.id;
     db.Task.findAll({
       where: {
-        AuthId: getUserID,
+        sparrow_id: getUserID,
         status: "Claimed"
       },
       include: [db.Auth]
@@ -92,16 +92,13 @@ module.exports = function (app) {
       var hbsObject = {
         tasks: data
       };
-      // Render the new object to the '<pageName>.handlebars' template
+      // Render the new object to the 'global.handlebars' template
       res.render("global", hbsObject);
     });
   });
   // POST route for saving a new task
   app.post("/api/tasks", loggedIn, function (req, res, next) {
-    console.log("Server side New Task");
-    console.log(req.body);
     var getUserID = req.user.id;
-    console.log(getUserID);
     var newTask = req.body;
     newTask["AuthId"] = getUserID;
     db.Task.create(newTask).then(function (data) {
@@ -117,14 +114,12 @@ module.exports = function (app) {
         id: req.params.id
       }
     }).then(function (data) {
-      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      // res.json(dbTask);
       // Assign a variable to point to object to hold the data from the SQL database
       var hbsObject = {
         tasks: data
       };
       // Render the new object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
-      res.render("documentation.handlebars", hbsObject);
+      res.render("dashboard", hbsObject);
     });
   });
 
@@ -146,17 +141,47 @@ module.exports = function (app) {
         res.json(true);
       });
   });
-  // PUT route for updating status of task based on characteristic of 'update' button clicked on the 'body' of the page
-  app.put("/api/tasks/progress", function (req, res) {
+  // PUT route for updating status of task to 'Outsourced'
+  app.put("/api/tasks/outsource/:id", loggedIn, function (req, res, next) {
     db.Task.update(
-      { status: req.body.status },
+      { status: "Outsourced" },
       {
         where: {
-          id: req.body.id
+          id: req.params.id
         }
       }).then(function (dbTask) {
-        // Return the updated Task object as a JSON response for management on the front-end Progress bar - no need to render to a Handlebars template
-        res.json(dbTask);
+        // Return 'true' to allow for redirect to global list on client side
+        res.json(true);
+      });
+  });
+  // PUT route for updating status of task to 'Claimed'
+  app.put("/api/tasks/claim/:id", loggedIn, function (req, res, next) {
+    var getUserID = req.user.id;
+    db.Task.update(
+      {
+        status: "Claimed",
+        sparrow_id: getUserID
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }).then(function (dbTask) {
+        // Return 'true' to allow for redirect to global list on client side
+        res.json(true);
+      });
+  });
+  // PUT route for updating status of task to 'Completed'
+  app.put("/api/tasks/complete/:id", loggedIn, function (req, res, next) {
+    db.Task.update(
+      { status: "Completed" },
+      {
+        where: {
+          id: req.params.id
+        }
+      }).then(function (dbTask) {
+        // Return 'true' to allow for redirect to global list on client side
+        res.json(true);
       });
   });
   // PUT route for updating status of task to 'Verified' so users' dollar balances are edited as well
@@ -211,7 +236,7 @@ function loggedIn(req, res, next) {
     next();
   }
   else {
-    console.log("Logged in was not conserved");
+    console.log("Login was not conserved");
     res.redirect('/');
   }
 }
