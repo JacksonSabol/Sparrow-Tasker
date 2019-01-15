@@ -22,32 +22,9 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/docs/signUp.html"));
   });
 
-
  //Route existing users to login page
   app.get("/signin", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/docs/login.html"));
-  });
-    
-   
-  // Route to User's "Personal" tasks list
-  app.get("/lists/personal", function (req, res) {
-    // Change to render to Handlebars template when they're complete
-    res.sendFile(path.join(__dirname, "../public/docs/documentation.html"));
-  });
-  // Route to User's "Outsourced" tasks list
-  app.get("/lists/outsourced", function (req, res) {
-    // Change to render to Handlebars template when they're complete
-    res.sendFile(path.join(__dirname, "../public/docs/outsourced.html"));
-  });
-  // Route to User's "Claimed" tasks list
-  app.get("/lists/claimed", function (req, res) {
-    // Change to render to Handlebars template when they're complete
-    res.sendFile(path.join(__dirname, "../public/assets/docs/claimed.html"));
-  });
-  // Route to "Global" tasks list
-  app.get("/lists/global", function (req, res) {
-    // Change to render to Handlebars template when they're complete
-    res.sendFile(path.join(__dirname, "../public/assets/docs/global.html"));
   });
 
   // Route to update User's profile page
