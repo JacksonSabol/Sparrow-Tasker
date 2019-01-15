@@ -136,6 +136,11 @@ abbr[data-original-title] {
   border-bottom: 0;
 }
 
+.signuptoday {
+  text-align: center;
+  font-family: 'Open Sans' , sans-serif;
+
+}
 address {
   margin-bottom: 1rem;
   font-style: normal;
