@@ -17,12 +17,11 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/docs/landingPage.html"));
   });
-    
+  // Route to direct user to signUp page
   app.get("/signup", function (req, res) {
-      console.log("requested signup")
-      console.log(path.join(__dirname, "../public/docs/signUp.html"));
     res.sendFile(path.join(__dirname, "../public/docs/signUp.html"));
   });
+
 
  //Route existing users to login page
   app.get("/signin", function (req, res) {
@@ -50,6 +49,7 @@ module.exports = function (app) {
     // Change to render to Handlebars template when they're complete
     res.sendFile(path.join(__dirname, "../public/assets/docs/global.html"));
   });
+
   // Route to update User's profile page
   app.get("/update/profile", function (req, res) {
     // Could potentially use a DB query and Handlebars to render User's current information into the placeholders of the input fields

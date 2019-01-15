@@ -7,100 +7,103 @@
 
 // Requiring our models
 var db = require("../models");
-// var express = require("express");
-var passport = require("passport");
-// var passport = require("../config/passport/passport.js");
+
 // Routes
 // =============================================================
 module.exports = function (app) {
-  // GET route for getting all of the logged-in user's tasks based on parameter passed
-  app.get("/api/tasks/:status", loggedIn, function (req, res, next) {
-    var getUserID = req.user.id;
-    console.log("Task API Route: " + getUserID);
-    db.Task.findAll({
-      where: { AuthId: getUserID },
-      include: [db.Auth]
-    }).then(function (data) {
-      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      // res.json(data);
-      // Assign a variable to point to object to hold the data from the SQL database
-      var hbsObject = {
-        tasks: data
-      };
-      // Render the new object to the '<pageName>.handlebars' template
-      res.render("dashboard", hbsObject);
-    });
-  });
   // GET route for getting all of the logged-in user's Personal tasks
   app.get("/tasks/personal", loggedIn, function (req, res, next) {
     var getUserID = req.user.id;
-    console.log("Task API Route: " + getUserID);
     db.Task.findAll({
-      where: { AuthId: getUserID },
+      where: {
+        AuthId: getUserID,
+        status: "Personal"
+      },
       include: [db.Auth]
     }).then(function (data) {
-      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      // res.json(data);
       // Assign a variable to point to object to hold the data from the SQL database
       var hbsObject = {
         tasks: data
       };
-      // Render the new object to the '<pageName>.handlebars' template
+      // Render the new object to the 'dashboard.handlebars' template
       res.render("dashboard", hbsObject);
     });
   });
   // GET route for getting all of the logged-in user's Claimed tasks
   app.get("/tasks/claimed", loggedIn, function (req, res, next) {
     var getUserID = req.user.id;
-    console.log("Task API Route: " + getUserID);
     db.Task.findAll({
-      where: { AuthId: getUserID },
+      where: {
+        sparrow_id: getUserID,
+        status: "Claimed"
+      },
       include: [db.Auth]
     }).then(function (data) {
-      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      // res.json(data);
       // Assign a variable to point to object to hold the data from the SQL database
       var hbsObject = {
         tasks: data
       };
-      // Render the new object to the '<pageName>.handlebars' template
+      // Render the new object to the 'claimed.handlebars' template
       res.render("claimed", hbsObject);
     });
   });
-
-  // Get route for retrieving a single task
-  app.get("/api/tasks/:id", function (req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.User
-    db.Task.findOne({
+  // GET route for getting all of the logged-in user's Outsourced tasks
+  app.get("/tasks/outsourced", loggedIn, function (req, res, next) {
+    var getUserID = req.user.id;
+    db.Task.findAll({
       where: {
-        id: req.params.id
+        AuthId: getUserID,
+        status: "Outsourced"
       },
-      include: [db.User]
-    }).then(function (dbTask) {
-      // Send response to DOM for display
-      res.json(dbTask);
+      include: [db.Auth]
+    }).then(function (data) {
+      // Assign a variable to point to object to hold the data from the SQL database
+      var hbsObject = {
+        tasks: data
+      };
+      // Render the new object to the 'outsourced.handlebars' template
+      res.render("outsourced", hbsObject);
     });
   });
-
+  // GET route for getting all of the logged-in user's completed tasks
+  app.get("/tasks/completed", loggedIn, function (req, res, next) {
+    var getUserID = req.user.id;
+    db.Task.findAll({
+      where: {
+        AuthId: getUserID,
+        status: "Completed"
+      },
+      include: [db.Auth]
+    }).then(function (data) {
+      // Assign a variable to point to object to hold the data from the SQL database
+      var hbsObject = {
+        tasks: data
+      };
+      // Render the new object to the 'completed.handlebars' template
+      res.render("completed", hbsObject);
+    });
+  });
+  // GET route for getting all of the Outsourced tasks that have yet to be claimed (Global list)
+  app.get("/tasks/global", loggedIn, function (req, res, next) {
+    db.Task.findAll({
+      where: { status: "Outsourced" }
+    }).then(function (data) {
+      // Assign a variable to point to object to hold the data from the SQL database
+      var hbsObject = {
+        tasks: data
+      };
+      // Render the new object to the 'global.handlebars' template
+      res.render("global", hbsObject);
+    });
+  });
   // POST route for saving a new task
   app.post("/api/tasks", loggedIn, function (req, res, next) {
-    console.log("Server side New Task");
-    console.log(req.body);
     var getUserID = req.user.id;
-    console.log(getUserID);
     var newTask = req.body;
     newTask["AuthId"] = getUserID;
     db.Task.create(newTask).then(function (data) {
       // Return a true response to redirect on client side
       res.json(true);
-      // Assign a variable to point to object to hold the data from the SQL database
-      // var hbsObject = {
-      //   tasks: data
-      // };
-      // Redirect to the GET route for all Personal tasks
-      // res.redirect('/tasks/personal');
     });
   });
 
@@ -111,14 +114,12 @@ module.exports = function (app) {
         id: req.params.id
       }
     }).then(function (data) {
-      // Once Handlebars pages are set up, render JSON object to the template instead of as a response
-      // res.json(dbTask);
       // Assign a variable to point to object to hold the data from the SQL database
       var hbsObject = {
         tasks: data
       };
       // Render the new object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
-      res.render("documentation.handlebars", hbsObject);
+      res.render("dashboard", hbsObject);
     });
   });
 
@@ -136,21 +137,51 @@ module.exports = function (app) {
         var hbsObject = {
           tasks: data
         };
-        // Render the updated object to the 'documentation.handlebars' template for displaying the "Personal" tasks tab
-        res.render("documentation.handlebars", hbsObject);
+        // Return 'true' to the DOM and redirect to dashboard on client side
+        res.json(true);
       });
   });
-  // PUT route for updating status of task based on characteristic of 'update' button clicked on the 'body' of the page
-  app.put("/api/tasks/progress", function (req, res) {
+  // PUT route for updating status of task to 'Outsourced'
+  app.put("/api/tasks/outsource/:id", loggedIn, function (req, res, next) {
     db.Task.update(
-      { status: req.body.status },
+      { status: "Outsourced" },
       {
         where: {
-          id: req.body.id
+          id: req.params.id
         }
       }).then(function (dbTask) {
-        // Return the updated Task object as a JSON response for management on the front-end Progress bar - no need to render to a Handlebars template
-        res.json(dbTask);
+        // Return 'true' to allow for redirect to global list on client side
+        res.json(true);
+      });
+  });
+  // PUT route for updating status of task to 'Claimed'
+  app.put("/api/tasks/claim/:id", loggedIn, function (req, res, next) {
+    var getUserID = req.user.id;
+    db.Task.update(
+      {
+        status: "Claimed",
+        sparrow_id: getUserID
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }).then(function (dbTask) {
+        // Return 'true' to allow for redirect to global list on client side
+        res.json(true);
+      });
+  });
+  // PUT route for updating status of task to 'Completed'
+  app.put("/api/tasks/complete/:id", loggedIn, function (req, res, next) {
+    db.Task.update(
+      { status: "Completed" },
+      {
+        where: {
+          id: req.params.id
+        }
+      }).then(function (dbTask) {
+        // Return 'true' to allow for redirect to global list on client side
+        res.json(true);
       });
   });
   // PUT route for updating status of task to 'Verified' so users' dollar balances are edited as well
@@ -205,7 +236,7 @@ function loggedIn(req, res, next) {
     next();
   }
   else {
-    console.log("Logged in was not conserved");
+    console.log("Login was not conserved");
     res.redirect('/');
   }
 }

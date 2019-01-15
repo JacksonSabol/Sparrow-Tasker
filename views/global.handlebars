@@ -1,293 +1,473 @@
- <div class="wrapper">
-    <div class="sidebar">
-      <!--
+<div class="wrapper">
+  <div class="sidebar">
+    <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
     -->
-      <div class="sidebar-wrapper">
-        <div class="logo">
-          <a href="javascript:void(0)" class="simple-text logo-mini">
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <a href="javascript:void(0)" class="simple-text logo-mini">
+        </a>
+        <a href="javascript:void(0)" class="simple-text logo-normal">
+          Dashboard
+        </a>
+      </div>
+      <ul class="nav">
+        <li class="active ">
+          <a href="/">
+            <i class="tim-icons icon-chart-pie-36"></i>
+            <p>SPARROW</p>
           </a>
-          <a href="javascript:void(0)" class="simple-text logo-normal">
-            Dashboard
+        </li>
+
+        <li>
+          <a href="/tasks/new">
+            <i class="tim-icons icon-single-02"></i>
+            <p>New Task</p>
           </a>
+        </li>
+
+        <li>
+          <a href="/tasks/personal">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/claimed">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Claimed Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/outsourced">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Outsourced Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/completed">
+            <i class="tim-icons icon-single-02"></i>
+            <p>Your Completed Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/tasks/global">
+            <i class="tim-icons icon-single-02"></i>
+            <p>All Tasks</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/notifications">
+            <i class="tim-icons icon-bell-55"></i>
+            <p>Notifications</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="/api/users/profile">
+            <i class="tim-icons icon-single-02"></i>
+            <p>User Profile</p>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <div class="navbar-toggle d-inline">
+            <button type="button" class="navbar-toggler">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </button>
+          </div>
+          <a class="navbar-brand" href="/">SPARROW</a>
         </div>
-        <ul class="nav">
-          <li class="active ">
-            <a href="./documentation.html">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p>SPARROW</p>
-            </a>
-          </li>
-
-          <li>
-              <a href="./tasksTemplate.html">
-                <i class="tim-icons icon-single-02"></i>
-                <p>New Task</p>
-              </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            <li class="search-bar input-group">
+              <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
+                <span class="d-lg-none d-md-block">Search</span>
+              </button>
             </li>
-
-            <li>
-                    <a href="./notification.html">
-                      <i class="tim-icons icon-bell-55"></i>
-                      <p>Notifications</p>
-                    </a>
-                  </li>
-
-          <li>
-            <a href="./sparrowUser.html">
-              <i class="tim-icons icon-single-02"></i>
-              <p>User Profile</p>
-            </a>
-          </li>
-
-        </ul>
+            <li class="dropdown nav-item">
+              <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <div class="notification d-none d-lg-block d-xl-block"></div>
+                <i class="tim-icons icon-sound-wave"></i>
+                <p class="d-lg-none">
+                  Notifications
+                </p>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+                <li class="nav-link">
+                  <a href="#" class="nav-item dropdown-item">Mike John claimed your task</a>
+                </li>
+                <li class="nav-link">
+                  <a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more tasks available to
+                    claim</a>
+                </li>
+                <li class="nav-link">
+                  <a href="javascript:void(0)" class="nav-item dropdown-item">Mike John has completed your task</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown nav-item">
+              <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <div class="photo">
+                  <img src="../assets/img/anime3.png" alt="Profile Photo">
+                </div>
+                <b class="caret d-none d-lg-block d-xl-block"></b>
+                <p class="d-lg-none">Log out</p>
+              </a>
+              <ul class="dropdown-menu dropdown-navbar">
+                <li class="nav-link">
+                  <a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a>
+                </li>
+                <li class="nav-link">
+                  <a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li class="nav-link">
+                  <a href="/logout" class="nav-item dropdown-item">Log Out</a>
+                </li>
+              </ul>
+            </li>
+            <li class="separator d-lg-none"></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle d-inline">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="javascript:void(0)">SPARROW</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav ml-auto">
-              <li class="search-bar input-group">
-                <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
-                  <span class="d-lg-none d-md-block">Search</span>
-                </button>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="notification d-none d-lg-block d-xl-block"></div>
-                  <i class="tim-icons icon-sound-wave"></i>
-                  <p class="d-lg-none">
-                    Notifications
-                  </p>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                  <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Mike John claimed your task</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more tasks available to
-                      claim</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Mike John has completed your task</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="photo">
-                    <img src="../assets/img/anime3.png" alt="Profile Photo">
-                  </div>
-                  <b class="caret d-none d-lg-block d-xl-block"></b>
-                  <p class="d-lg-none">
-                    Log out
-                  </p>
-                </a>
-                <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a>
-                  </li>
-                  <li class="dropdown-divider"></li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="separator d-lg-none"></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Navbar -->
-      <div class="content">
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-chart">
-              <div class="card-header ">
-
-                <div class="row">
-                  <div class="col-lg-12 col-md-12">
-                    <div class="card card-tasks">
-                      <div class="card-header ">
-                        <h6 class="title d-inline">Tasks(5)</h6>
-                        <p class="card-category d-inline">today</p>
-                        <div class="col-sm-12">
-                          <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                            <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                              <input type="radio" name="options" checked id="personal-tasks-link">
-                              <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Personal Tasks</span>
-                              <span class="d-block d-sm-none">
-                                <i class="tim-icons icon-single-02"></i>
-                              </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="1">
-                              <input type="radio" class="d-none d-sm-none" name="options">
-                              <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Claimed Tasks</span>
-                              <span class="d-block d-sm-none">
-                                <i class="tim-icons icon-gift-2"></i>
-                              </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="1">
-                              <input type="radio" class="d-none d-sm-none" name="options">
-                              <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Outsourced Tasks</span>
-                              <span class="d-block d-sm-none">
-                                <i class="tim-icons icon-gift-2"></i>
-                              </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="2">
-                              <input type="radio" class="d-none" name="options">
-                              <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Completed Tasks</span>
-                              <span class="d-block d-sm-none">
-                                <i class="tim-icons icon-tap-02"></i>
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="card-body ">
-                         
-<!-- partials goes here                        -->
-                       
-    
-                        
-                         <div class="table-full-width table-responsive">
-                         
-                         <table class="table">
-                         <tbody>
-                           {{#each tasks}}
-                              {{>personal/personal-block }}
-                           {{/each}}
-                         </tbody>
-                          
-      
-                         </table>
-                          </div>
-                          
+    <!-- End Navbar -->
+    <div class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-chart">
+            <div class="card-header ">
+              <div class="row">
+                <div class="col-lg-12 col-md-12">
+                  <div class="card card-tasks">
+                    <div class="card-header ">
+                      <h6 class="title d-inline">All Tasks</h6>
+                      <p class="card-category d-inline">available to claim</p>
+                      <div class="col-sm-12">
+                        <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                          <label class="btn btn-sm btn-primary btn-simple" id="0">
+                            <input type="radio" name="options">
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Personal
+                              Tasks</span>
+                            <span class="d-block d-sm-none">
+                              <i class="tim-icons icon-single-02"></i>
+                            </span>
+                          </label>
+                          <label class="btn btn-sm btn-primary btn-simple" id="1">
+                            <input type="radio" class="d-none d-sm-none" name="options">
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Claimed
+                              Tasks</span>
+                            <span class="d-block d-sm-none">
+                              <i class="tim-icons icon-gift-2"></i>
+                            </span>
+                          </label>
+                          <label class="btn btn-sm btn-primary btn-simple" id="2">
+                            <input type="radio" class="d-none d-sm-none" name="options">
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Outsourced
+                              Tasks</span>
+                            <span class="d-block d-sm-none">
+                              <i class="tim-icons icon-gift-2"></i>
+                            </span>
+                          </label>
+                          <label class="btn btn-sm btn-primary btn-simple active" id="3">
+                            <input type="radio" class="d-none d-sm-none" name="options" checked>
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Global
+                              Tasks</span>
+                            <span class="d-block d-sm-none">
+                              <i class="tim-icons icon-gift-2"></i>
+                            </span>
+                          </label>
+                          <label class="btn btn-sm btn-primary btn-simple" id="4">
+                            <input type="radio" class="d-none" name="options">
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Completed
+                              Tasks</span>
+                            <span class="d-block d-sm-none">
+                              <i class="tim-icons icon-tap-02"></i>
+                            </span>
+                          </label>
                         </div>
                       </div>
-                      <div>
+                      <div class="card-body ">
+                        <div class="table-full-width table-responsive">
+                          <table class="table">
+                            <tbody>
+                              {{#each tasks}}
+                              <tr>
+                                <td>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox" value="">
+                                      <span class="form-check-sign">
+                                        <span class="check"></span>
+                                      </span>
+                                    </label>
+                                  </div>
+                                </td>
+                                <td>
+                                  <p class="title">Title: {{this.title}}</p>
+                                  <p class="text-muted">Description: {{this.description}}</p>
+                                  <p class="deadline">Deadline: {{this.deadline}} hours</p>
+                                </td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" class="btn btn-link claim-btn" data-original-title="Claim Task" data-id="{{this.id}}">
+                                    <i class="tim-icons icon-delivery-fast"></i>
+                                  </button>
+                                </td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                                    <i class="tim-icons icon-pencil"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                              {{/each}}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
+                    </div>
+                    <div>
                     </div>
                   </div>
                 </div>
               </div>
-              
-
-
-              <div class="container">
-		
-        
-                  <div class="row justify-content-center bs-wizard" style="border-bottom:0;">
-                      
-                      <div class="col-xs-3 bs-wizard-step complete">
-                        <div class="text-center bs-wizard-stepnum">Step 1</div>
-                        <div class="progress"><div class="progress-bar"></div></div>
-                        <a href="#" class="bs-wizard-dot"></a>
-                        <div class="bs-wizard-info text-center"> Task Claimed</div>
-                      </div>
-                      
-                      <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
-                        <div class="text-center bs-wizard-stepnum">Step 2</div>
-                        <div class="progress"><div class="progress-bar"></div></div>
-                        <a href="#" class="bs-wizard-dot"></a>
-                        <div class="bs-wizard-info text-center"> Task Started</div>
-                      </div>
-                      
-                      <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
-                        <div class="text-center bs-wizard-stepnum">Step 3</div>
-                        <div class="progress"><div class="progress-bar"></div></div>
-                        <a href="#" class="bs-wizard-dot"></a>
-                        <div class="bs-wizard-info text-center"> Task In-Progress </div>
-                      </div>
-                      
-                      <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
-                        <div class="text-center bs-wizard-stepnum">Step 4</div>
-                        <div class="progress"><div class="progress-bar"></div></div>
-                        <a href="#" class="bs-wizard-dot"></a>
-                        <div class="bs-wizard-info text-center"> Task Completed </div>
-                      </div>
+            </div>
+            <div class="container">
+              <div class="row justify-content-center bs-wizard" style="border-bottom:0;">
+                <div class="col-xs-3 bs-wizard-step complete">
+                  <div class="text-center bs-wizard-stepnum">Step 1</div>
+                  <div class="progress">
+                    <div class="progress-bar"></div>
                   </div>
-              
-              
-              
-              
-              
-        </div>
-                    <footer class="footer">
-                      <div class="container-fluid">
-                        <ul class="nav">
-                          
-                        </ul>
-                        <div class="copyright">
-                          ©
-                          <script>
-                            document.write(new Date().getFullYear())
-                          </script> made with <i class="tim-icons icon-heart-2"></i> by
-                          <a href="javascript:void(0)" target="_blank">Team Sparrow</a> for a more productive life.
-                        </div>
-                      </div>
-                    </footer>
-                  </div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"> Task Claimed</div>
                 </div>
-                <div class="fixed-plugin">
-                  <div class="dropdown show-dropdown">
-                    <a href="#" data-toggle="dropdown">
-                      <i class="fa fa-cog fa-2x"> </i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class="header-title"> Sidebar Background</li>
-                      <li class="adjustments-line">
-                        <a href="javascript:void(0)" class="switch-trigger background-color">
-                          <div class="badge-colors text-center">
-                            <span class="badge filter badge-primary active" data-color="primary"></span>
-                            <span class="badge filter badge-info" data-color="blue"></span>
-                            <span class="badge filter badge-success" data-color="green"></span>
-                          </div>
-                          <div class="clearfix"></div>
-                        </a>
-                      </li>
-                      <li class="adjustments-line text-center color-change">
-                        <span class="color-label">LIGHT MODE</span>
-                        <span class="badge light-badge mr-2"></span>
-                        <span class="badge dark-badge ml-2"></span>
-                        <span class="color-label">DARK MODE</span>
-                      </li>
-
-
-                    </ul>
+                <div class="col-xs-3 bs-wizard-step complete">
+                  <!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 2</div>
+                  <div class="progress">
+                    <div class="progress-bar"></div>
                   </div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"> Task Started</div>
                 </div>
+
+                <div class="col-xs-3 bs-wizard-step active">
+                  <!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 3</div>
+                  <div class="progress">
+                    <div class="progress-bar"></div>
+                  </div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"> Task In-Progress </div>
+                </div>
+
+                <div class="col-xs-3 bs-wizard-step disabled">
+                  <!-- active -->
+                  <div class="text-center bs-wizard-stepnum">Step 4</div>
+                  <div class="progress">
+                    <div class="progress-bar"></div>
+                  </div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"> Task Completed </div>
+                </div>
+              </div>
+            </div>
+            <footer class="footer">
+              <div class="container-fluid">
+                <ul class="nav">
+                </ul>
+                <div class="copyright">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear())
+                  </script> made with <i class="tim-icons icon-heart-2"></i> by
+                  <a href="javascript:void(0)" target="_blank">Team Sparrow</a> for a more productive life.
+                </div>
+              </div>
+            </footer>
           </div>
+        </div>
+        <div class="fixed-plugin">
+          <div class="dropdown show-dropdown">
+            <a href="#" data-toggle="dropdown">
+              <i class="fa fa-cog fa-2x"> </i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header-title"> Sidebar Background</li>
+              <li class="adjustments-line">
+                <a href="javascript:void(0)" class="switch-trigger background-color">
+                  <div class="badge-colors text-center">
+                    <span class="badge filter badge-primary active" data-color="primary"></span>
+                    <span class="badge filter badge-info" data-color="blue"></span>
+                    <span class="badge filter badge-success" data-color="green"></span>
+                  </div>
+                  <div class="clearfix"></div>
+                </a>
+              </li>
+              <li class="adjustments-line text-center color-change">
+                <span class="color-label">LIGHT MODE</span>
+                <span class="badge light-badge mr-2"></span>
+                <span class="badge dark-badge ml-2"></span>
+                <span class="color-label">DARK MODE</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--   Core JS Files   -->
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+<script>
+  $(document).ready(function () {
+    $().ready(function () {
+      $sidebar = $('.sidebar');
+      $navbar = $('.navbar');
+      $main_panel = $('.main-panel');
+
+      $full_page = $('.full-page');
+
+      $sidebar_responsive = $('body > .navbar-collapse');
+      sidebar_mini_active = true;
+      white_color = false;
+
+      window_width = $(window).width();
+
+      fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+      $('.fixed-plugin a').click(function (event) {
+        if ($(this).hasClass('switch-trigger')) {
+          if (event.stopPropagation) {
+            event.stopPropagation();
+          } else if (window.event) {
+            window.event.cancelBubble = true;
+          }
+        }
+      });
+
+      $('.fixed-plugin .background-color span').click(function () {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('color');
+
+        if ($sidebar.length != 0) {
+          $sidebar.attr('data', new_color);
+        }
+
+        if ($main_panel.length != 0) {
+          $main_panel.attr('data', new_color);
+        }
+
+        if ($full_page.length != 0) {
+          $full_page.attr('filter-color', new_color);
+        }
+
+        if ($sidebar_responsive.length != 0) {
+          $sidebar_responsive.attr('data', new_color);
+        }
+      });
+
+      $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
+        var $btn = $(this);
+
+        if (sidebar_mini_active == true) {
+          $('body').removeClass('sidebar-mini');
+          sidebar_mini_active = false;
+          blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+        } else {
+          $('body').addClass('sidebar-mini');
+          sidebar_mini_active = true;
+          blackDashboard.showSidebarMessage('Sidebar mini activated...');
+        }
+
+        // we simulate the window Resize so the charts will get updated in realtime.
+        var simulateWindowResize = setInterval(function () {
+          window.dispatchEvent(new Event('resize'));
+        }, 180);
+
+        // we stop the simulation of Window Resize after the animations are completed
+        setTimeout(function () {
+          clearInterval(simulateWindowResize);
+        }, 1000);
+      });
+
+      $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
+        var $btn = $(this);
+
+        if (white_color == true) {
+
+          $('body').addClass('change-background');
+          setTimeout(function () {
+            $('body').removeClass('change-background');
+            $('body').removeClass('white-content');
+          }, 900);
+          white_color = false;
+        } else {
+
+          $('body').addClass('change-background');
+          setTimeout(function () {
+            $('body').removeClass('change-background');
+            $('body').addClass('white-content');
+          }, 900);
+
+          white_color = true;
+        }
+
+
+      });
+
+      $('.light-badge').click(function () {
+        $('body').addClass('white-content');
+      });
+
+      $('.dark-badge').click(function () {
+        $('body').removeClass('white-content');
+      });
+    });
+  });
+</script>

@@ -13,7 +13,7 @@
       </div>
       <ul class="nav">
         <li class="active ">
-          <a href="./documentation.html">
+          <a href="/">
             <i class="tim-icons icon-chart-pie-36"></i>
             <p>SPARROW</p>
           </a>
@@ -62,14 +62,14 @@
         </li>
 
         <li>
-          <a href="./notifications.html">
+          <a href="/notifications">
             <i class="tim-icons icon-bell-55"></i>
             <p>Notifications</p>
           </a>
         </li>
 
         <li>
-          <a href="./sparrowUser.html">
+          <a href="/api/users/profile">
             <i class="tim-icons icon-single-02"></i>
             <p>User Profile</p>
           </a>
@@ -90,7 +90,7 @@
               <span class="navbar-toggler-bar bar3"></span>
             </button>
           </div>
-          <a class="navbar-brand" href="javascript:void(0)">SPARROW</a>
+          <a class="navbar-brand" href="/">SPARROW</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -143,7 +143,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="nav-link">
-                  <a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a>
+                  <a href="/logout" class="nav-item dropdown-item">Log Out</a>
                 </li>
               </ul>
             </li>
@@ -171,18 +171,17 @@
         <div class="col-12">
           <div class="card card-chart">
             <div class="card-header ">
-
               <div class="row">
                 <div class="col-lg-12 col-md-12">
                   <div class="card card-tasks">
                     <div class="card-header ">
-                      <h6 class="title d-inline">Tasks</h6>
+                      <h6 class="title d-inline">Your Tasks</h6>
                       <p class="card-category d-inline">today</p>
                       <div class="col-sm-12">
                         <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                           <label class="btn btn-sm btn-primary btn-simple active" id="0">
                             <input type="radio" name="options" checked>
-                            <span href="" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Personal
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Personal
                               Tasks</span>
                             <span class="d-block d-sm-none">
                               <i class="tim-icons icon-single-02"></i>
@@ -198,7 +197,7 @@
                           </label>
                           <label class="btn btn-sm btn-primary btn-simple" id="2">
                             <input type="radio" class="d-none d-sm-none" name="options">
-                            <span href="../public/assets/docs/outsourced.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Outsourced
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Outsourced
                               Tasks</span>
                             <span class="d-block d-sm-none">
                               <i class="tim-icons icon-gift-2"></i>
@@ -206,7 +205,7 @@
                           </label>
                           <label class="btn btn-sm btn-primary btn-simple" id="3">
                             <input type="radio" class="d-none d-sm-none" name="options">
-                            <span href="../public/assets/docs/global.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Global
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Global
                               Tasks</span>
                             <span class="d-block d-sm-none">
                               <i class="tim-icons icon-gift-2"></i>
@@ -214,7 +213,7 @@
                           </label>
                           <label class="btn btn-sm btn-primary btn-simple" id="4">
                             <input type="radio" class="d-none" name="options">
-                            <span href="../public/assets/docs/completed.html" class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Completed
+                            <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Completed
                               Tasks</span>
                             <span class="d-block d-sm-none">
                               <i class="tim-icons icon-tap-02"></i>
@@ -227,7 +226,6 @@
                           <table class="table">
                             <tbody>
                               {{#each tasks}}
-                              {{!-- {{#is this.status "Personal"}} --}}
                               <tr>
                                 <td>
                                   <div class="form-check">
@@ -240,8 +238,14 @@
                                   </div>
                                 </td>
                                 <td>
-                                  <p class="title">{{this.title}}</p>
-                                  <p class="text-muted">{{this.description}}</p>
+                                  <p class="title">Title: {{this.title}}</p>
+                                  <p class="text-muted">Description: {{this.description}}</p>
+                                  <p class="deadline">Deadline: {{this.deadline}} hours</p>
+                                </td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" class="btn btn-link outsource-btn" data-original-title="Edit Task" data-id="{{this.id}}">
+                                    <i class="tim-icons icon-map-big"><i class="tim-icons icon-double-right"></i></i>
+                                  </button>
                                 </td>
                                 <td class="td-actions text-right">
                                   <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
@@ -249,7 +253,6 @@
                                   </button>
                                 </td>
                               </tr>
-                              {{!-- {{/is}} --}}
                               {{/each}}
                             </tbody>
                           </table>
@@ -262,14 +265,8 @@
                 </div>
               </div>
             </div>
-
-
-
             <div class="container">
-
-
               <div class="row justify-content-center bs-wizard" style="border-bottom:0;">
-
                 <div class="col-xs-3 bs-wizard-step complete">
                   <div class="text-center bs-wizard-stepnum">Step 1</div>
                   <div class="progress">
@@ -278,7 +275,6 @@
                   <a href="#" class="bs-wizard-dot"></a>
                   <div class="bs-wizard-info text-center"> Task Claimed</div>
                 </div>
-
                 <div class="col-xs-3 bs-wizard-step complete">
                   <!-- complete -->
                   <div class="text-center bs-wizard-stepnum">Step 2</div>
@@ -309,16 +305,10 @@
                   <div class="bs-wizard-info text-center"> Task Completed </div>
                 </div>
               </div>
-
-
-
-
-
             </div>
             <footer class="footer">
               <div class="container-fluid">
                 <ul class="nav">
-
                 </ul>
                 <div class="copyright">
                   ©
@@ -354,124 +344,126 @@
                 <span class="badge dark-badge ml-2"></span>
                 <span class="color-label">DARK MODE</span>
               </li>
-
-
             </ul>
           </div>
         </div>
-        <!--   Core JS Files   -->
-        <script src="../assets/js/core/jquery.min.js"></script>
-        <script src="../assets/js/core/popper.min.js"></script>
-        <script src="../assets/js/core/bootstrap.min.js"></script>
-        <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-        <!--  Notifications Plugin    -->
-        <script src="../assets/js/plugins/bootstrap-notify.js"></script>
-        <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
-        <script>
-          $(document).ready(function () {
-            $().ready(function () {
-              $sidebar = $('.sidebar');
-              $navbar = $('.navbar');
-              $main_panel = $('.main-panel');
+      </div>
+    </div>
+  </div>
+</div>
+<!--   Core JS Files   -->
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+<script>
+  $(document).ready(function () {
+    $().ready(function () {
+      $sidebar = $('.sidebar');
+      $navbar = $('.navbar');
+      $main_panel = $('.main-panel');
 
-              $full_page = $('.full-page');
+      $full_page = $('.full-page');
 
-              $sidebar_responsive = $('body > .navbar-collapse');
-              sidebar_mini_active = true;
-              white_color = false;
+      $sidebar_responsive = $('body > .navbar-collapse');
+      sidebar_mini_active = true;
+      white_color = false;
 
-              window_width = $(window).width();
+      window_width = $(window).width();
 
-              fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-
-
-              $('.fixed-plugin a').click(function (event) {
-                if ($(this).hasClass('switch-trigger')) {
-                  if (event.stopPropagation) {
-                    event.stopPropagation();
-                  } else if (window.event) {
-                    window.event.cancelBubble = true;
-                  }
-                }
-              });
-
-              $('.fixed-plugin .background-color span').click(function () {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('color');
-
-                if ($sidebar.length != 0) {
-                  $sidebar.attr('data', new_color);
-                }
-
-                if ($main_panel.length != 0) {
-                  $main_panel.attr('data', new_color);
-                }
-
-                if ($full_page.length != 0) {
-                  $full_page.attr('filter-color', new_color);
-                }
-
-                if ($sidebar_responsive.length != 0) {
-                  $sidebar_responsive.attr('data', new_color);
-                }
-              });
-
-              $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
-                var $btn = $(this);
-
-                if (sidebar_mini_active == true) {
-                  $('body').removeClass('sidebar-mini');
-                  sidebar_mini_active = false;
-                  blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-                } else {
-                  $('body').addClass('sidebar-mini');
-                  sidebar_mini_active = true;
-                  blackDashboard.showSidebarMessage('Sidebar mini activated...');
-                }
-
-                // we simulate the window Resize so the charts will get updated in realtime.
-                var simulateWindowResize = setInterval(function () {
-                  window.dispatchEvent(new Event('resize'));
-                }, 180);
-
-                // we stop the simulation of Window Resize after the animations are completed
-                setTimeout(function () {
-                  clearInterval(simulateWindowResize);
-                }, 1000);
-              });
-
-              $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
-                var $btn = $(this);
-
-                if (white_color == true) {
-
-                  $('body').addClass('change-background');
-                  setTimeout(function () {
-                    $('body').removeClass('change-background');
-                    $('body').removeClass('white-content');
-                  }, 900);
-                  white_color = false;
-                } else {
-
-                  $('body').addClass('change-background');
-                  setTimeout(function () {
-                    $('body').removeClass('change-background');
-                    $('body').addClass('white-content');
-                  }, 900);
-
-                  white_color = true;
-                }
+      fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
 
-              });
 
-              $('.light-badge').click(function () {
-                $('body').addClass('white-content');
-              });
+      $('.fixed-plugin a').click(function (event) {
+        if ($(this).hasClass('switch-trigger')) {
+          if (event.stopPropagation) {
+            event.stopPropagation();
+          } else if (window.event) {
+            window.event.cancelBubble = true;
+          }
+        }
+      });
+
+      $('.fixed-plugin .background-color span').click(function () {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('color');
+
+        if ($sidebar.length != 0) {
+          $sidebar.attr('data', new_color);
+        }
+
+        if ($main_panel.length != 0) {
+          $main_panel.attr('data', new_color);
+        }
+
+        if ($full_page.length != 0) {
+          $full_page.attr('filter-color', new_color);
+        }
+
+        if ($sidebar_responsive.length != 0) {
+          $sidebar_responsive.attr('data', new_color);
+        }
+      });
+
+      $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
+        var $btn = $(this);
+
+        if (sidebar_mini_active == true) {
+          $('body').removeClass('sidebar-mini');
+          sidebar_mini_active = false;
+          blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+        } else {
+          $('body').addClass('sidebar-mini');
+          sidebar_mini_active = true;
+          blackDashboard.showSidebarMessage('Sidebar mini activated...');
+        }
+
+        // we simulate the window Resize so the charts will get updated in realtime.
+        var simulateWindowResize = setInterval(function () {
+          window.dispatchEvent(new Event('resize'));
+        }, 180);
+
+        // we stop the simulation of Window Resize after the animations are completed
+        setTimeout(function () {
+          clearInterval(simulateWindowResize);
+        }, 1000);
+      });
+
+      $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
+        var $btn = $(this);
+
+        if (white_color == true) {
+
+          $('body').addClass('change-background');
+          setTimeout(function () {
+            $('body').removeClass('change-background');
+            $('body').removeClass('white-content');
+          }, 900);
+          white_color = false;
+        } else {
+
+          $('body').addClass('change-background');
+          setTimeout(function () {
+            $('body').removeClass('change-background');
+            $('body').addClass('white-content');
+          }, 900);
+
+          white_color = true;
+        }
+
+
+      });
+
+      $('.light-badge').click(function () {
+        $('body').addClass('white-content');
+      });
 
               $('.dark-badge').click(function () {
                 $('body').removeClass('white-content');
@@ -481,3 +473,4 @@
         </script>
         
        
+
