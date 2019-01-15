@@ -76,7 +76,7 @@ $(document).ready(function () {
     });
 
     //** working
-    // When user clicks on 'Save' button when signing up
+    // Redirects new users to signup page
     $("#sign-up").on("click", function (event) {
         // Prevent default action of refreshing page
         event.preventDefault();
@@ -115,66 +115,28 @@ $(document).ready(function () {
             }
         });
     });
-    //** pop-up signin is used. can be deleted.
+    
+    // directs existing user to signin page
     // When user clicks on 'Save' button when signing up
-    $("#signin").on("click", function (event) {
-        // Prevent default action of refreshing page
-        event.preventDefault();
-        // Assign a variable to hold the id of the button 'clicked'
-        // Send an AJAX POST-request with jQuery
-        $.ajax({
-            url: "/signin",
-            type: 'GET',
-            success: function (response) {
-                // Do something with the response if necessary
-                // This reloads the page, for example
-                // location.reload();
-            }
-        });
-    });
-
-    //** not working
-    // When user clicks on 'Save' button when signing up
-    $("#loginUser").on("click", function (event) {
-        // Prevent default action of refreshing page
-        event.preventDefault();
-
-        // Assign a variable to hold the id of the button 'clicked'
-        // Send an AJAX POST-request with jQuery
-        $.ajax({
-            url: "/signin/user",
-            type: 'POST',
-            success: function (response) {
-                // Do something with the response if necessary
-                // This reloads the page, for example
-                // location.reload();
-                //window.location.href = "/dash"
-                console.log(response);
-
-
-            }
-        });
-    });
-
-
-    // When user clicks on 'Save' button when signing up
-    //$("#personal-tasks-link").on("click", function (event) {
-    //    // Prevent default action of refreshing page
-    //    event.preventDefault();
-    //    // Assign a variable to hold the id of the button 'clicked'
-    //    var buttonClicked = $(this).data("id");
-    //    // Send an AJAX POST-request with jQuery
-    //    $.ajax({
-    //        url: "/personal/tasks" + buttonClicked + "",
-    //        type: 'POST',
-    //        success: function (response) {
-    //           
-    //			// Do something with the response if necessary
-    //            // This reloads the page, for example
-    //            // location.reload();
-    //        }
-    //    });
-    //});
+    $("#sign-in").on("click", function (event) {
+    // Prevent default action of refreshing page
+    event.preventDefault();
+    // Assign a variable to hold the id of the button 'clicked'
+    // Send an AJAX POST-request with jQuery
+    console.log("signed in form");
+    //$(this).attr("href","/signup");
+    window.location.href = "/signin"
+   $.ajax({
+       url: "/signin",
+       type: 'GET',
+       success: function (response) {
+           console.log("success signed in form")
+			// Do something with the response if necessary
+           // This reloads the page, for example
+           // location.reload();
+       }
+   });
+});
 
     // ** 
     // When user clicks on 'Save' button when signing up

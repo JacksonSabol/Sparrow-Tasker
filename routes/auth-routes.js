@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
     // 
 
 
-    app.get("/dashboard/:userId", isLoggedIn, function (req, res) {
+    app.get("/dashboard/:userId/", isLoggedIn, function (req, res) {
         var getUserId = req.params.userId;
         console.log("Auth Route: " + getUserId);
         db.Task.findAll({
@@ -20,15 +20,8 @@ module.exports = function (app, passport) {
             res.render("dashboard", hbsObject);
         });
     });
-    // Login test
-    app.post("/login",
-        passport.authenticate("local"),
-        function (req, res) {
-            // If this function gets called, authentication was successful.
-            // `req.user` contains the authenticated user.
-            res.redirect("/tasks/personal");
-        });
-
+    
+  // Logout users out of session
     app.get("/logout", function (req, res) {
         console.log("Log Out Route Hit");
         req.session.destroy(function (err) {
@@ -38,18 +31,21 @@ module.exports = function (app, passport) {
         });
     });
 
-
+   // Authorize new users
     app.post('/signup/newuser', passport.authenticate('local-signup'), function (req, res) {
+        console.log("inside signup");
         console.log(req.user);
         res.redirect('/tasks/personal');
     });
 
-    app.post('/signin/user', passport.authenticate('local-signin', {
-        successRedirect: '/dashboard',
+   // Authorize existing users for login
 
-        failureRedirect: '/'
-    }
-    ));
+    app.post("/signin/user",passport.authenticate('local-signin'),function(req,res) {
+        console.log("*******inside signin post*****");
+        console.log("on success" ,req.user.email);
+        res.redirect('/tasks/personal');
+
+    });
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())

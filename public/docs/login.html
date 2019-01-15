@@ -20,6 +20,7 @@
   <link href="../assets/css/signup.css" rel="stylesheet" id="Login-css">
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="../assets/js/event-listeners.js"></script>
 
 </head>
 
@@ -29,10 +30,11 @@
       <div class="wrap">
         <p class="form-title">
           Sign In</p>
-        <form class="login">
-          <input type="text" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
+        <form class="login" id="signin" name="signin"  method="post" action="signin/user">
+          <input type="text" placeholder=" Your Email" name=email id="useremail"/>
+          <input type="password" placeholder="Password" name="password" id="userpwd" />
+          <button type="submit" class="btn btn-primary" id="loginUser">Submit</button>
+<!--          <input type="submit" value="Sign In" class="btn btn-success btn-sm" />-->
         </form>
       </div>
     </div>
